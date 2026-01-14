@@ -12,6 +12,7 @@ const populateDb = `
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS  IDENTITY,
         username VARCHAR ( 255 ),
+        password VARCHAR ( 255 ),
         first_name VARCHAR ( 255 ),
         last_name VARCHAR ( 255 ),
         status VARCHAR ( 255 ),
