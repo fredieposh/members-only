@@ -6,6 +6,8 @@ const { Pool } = require('pg');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
+const indexRouter = require('./routes/indexRouter.js');
+const signUpRouter = require('./routes/signUpRouter.js');
 
 const app = express();
 const pool = new Pool ({
@@ -66,3 +68,15 @@ passport.deserializeUser(async (id, done) => {
         err;
     };
 });
+
+// app.use('/', indexRouter);
+app.use('/sign-up', signUpRouter);
+
+app.listen(3000, (err) => {
+        if (err) {
+            throw err;
+        };
+
+        console.log("Listening On Port 3000");
+    }
+);  
