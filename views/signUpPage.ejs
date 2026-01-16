@@ -7,6 +7,9 @@
 </head>
 <body>
     <h2>Sign Up!</h2>
+    <% if(locals.errors) { %>
+        <%- include "./partials/errors.ejs" %>
+    <% } %>
     <div class="form-container">
         <form class="add-user" action="/sign-up" method="POST">
             <div>
