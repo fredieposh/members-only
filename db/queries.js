@@ -26,6 +26,6 @@ exports.addUser = async function(username, password, firstName, lastName) {
 };
 
 exports.getMessages = async function() {
-    const { rows } = await pool.query("SELECT * FROM comments;");
+    const { rows } = await pool.query("SELECT user_id,username, comment, comments.time FROM users JOIN comments ON users.id = comments.user_id;");
     return rows;
 };
