@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 
 const indexRouter = require('./routes/indexRouter.js');
 const signUpRouter = require('./routes/signUpRouter.js');
+const logInRouter = require('./routes/logInRouter.js');
 
 const app = express();
 const pool = new Pool ({
@@ -71,6 +72,7 @@ passport.deserializeUser(async (id, done) => {
 
 // app.use('/', indexRouter);
 app.use('/sign-up', signUpRouter);
+app.use('/log-in', logInRouter);
 
 
 app.use((err, req, res, next) => {

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h2>Login</h2>
+    <% if(locals.errors) { %>
+        <%- include ("./partials/errors.ejs") %>
+    <% } %>
+    <div class="form-container">
+        <form class="login-user" action="/log-in" method="POST">
+            <div>
+                <label for="username">User Name: </label>
+                <input type="text" id="username" name="username" minlength="2" required>
+            </div>
+            <div>
+                <label for="password">Password: </label>
+                    <input type="password" id="password" name="password" minlength="8" required>
+            </div>
+            <div class="buttons-div">
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
