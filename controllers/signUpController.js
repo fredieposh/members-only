@@ -42,7 +42,7 @@ exports.getSignUpPage = function(req, res, next) {
     });
 };
 
-exports.postSignUpPage =  [
+exports.postSignUpPage = [
     validateUserDetails,
     async function(req, res, next){
         try{

@@ -6,11 +6,12 @@
     <title><%= title %></title>
 </head>
 <body>
+    <%- include ("./partials/header.ejs") %>
     <h2>Login</h2>
     <% if(locals.errors) { %>
         <%- include ("./partials/errors.ejs") %>
     <% } %>
-    <div class="form-container">
+    <div class="container">
         <form class="login-user" action="/log-in" method="POST">
             <div>
                 <label for="username">User Name: </label>
