@@ -5,6 +5,7 @@ const passport = require('passport');
 const { Pool } = require('pg');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
+const flash = require("connect-flash");
 
 const indexRouter = require('./routes/indexRouter.js');
 const signUpRouter = require('./routes/signUpRouter.js');
@@ -32,6 +33,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use(flash());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
@@ -61,7 +63,7 @@ passport.serializeUser(async (user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     try {
-        const { rows } = pool.query("SELECT * FROM users WHERE id = $1", [id]);
+        const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
         const user = rows[0];
 
         done(null, user);
