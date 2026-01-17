@@ -9,6 +9,18 @@ const pool = new Pool({
 });
 
 exports.getUserNames = async function() {
-    const { rows } = pool.query(`SELECT * FROM users;`);
+    const { rows } = await pool.query(`SELECT * FROM users;`);
     return rows;
+};
+
+exports.getUserByUsername = async function(username) {
+    const { rows } = await pool.query(`SELECT * FROM users WHERE username = $1;`, [username]);
+    return rows;
+};
+
+exports.addUser = async function(username, password, firstName, lastName) {
+    await pool.query(`
+        INSERT INTO users (username, password, first_name, last_name)
+        VALUES ($1, $2, $3, $4);
+        `, [username, password, firstName, lastName]);
 };

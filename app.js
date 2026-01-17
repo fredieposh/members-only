@@ -72,6 +72,11 @@ passport.deserializeUser(async (id, done) => {
 // app.use('/', indexRouter);
 app.use('/sign-up', signUpRouter);
 
+
+app.use((err, req, res, next) => {
+    console.log(err);
+})
+
 app.listen(3000, (err) => {
         if (err) {
             throw err;

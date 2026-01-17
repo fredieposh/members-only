@@ -15,8 +15,8 @@ const populateDb = `
         password VARCHAR ( 255 ),
         first_name VARCHAR ( 255 ),
         last_name VARCHAR ( 255 ),
-        status VARCHAR ( 255 ),
-        admin BOOLEAN,
+        status VARCHAR ( 255 ) NOT NULL DEFAULT 'not_member',
+        admin BOOLEAN NOT NULL DEFAULT false,
         time TIMESTAMPTZ NOT NULL DEFAULT (CURRENT_TIMESTAMP AT  TIME ZONE 'UTC')
     );
 

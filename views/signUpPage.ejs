@@ -8,7 +8,7 @@
 <body>
     <h2>Sign Up!</h2>
     <% if(locals.errors) { %>
-        <%- include "./partials/errors.ejs" %>
+        <%- include ("./partials/errors.ejs") %>
     <% } %>
     <div class="form-container">
         <form class="add-user" action="/sign-up" method="POST">
@@ -22,7 +22,7 @@
             </div>
             <div>
                 <label for="firstName">First Name: </label>
-                    <input type="text" id="name" name="firstName" minlength="2" required>
+                    <input type="text" id="firstName" name="firstName" minlength="2" required>
             </div>
             <div>
                 <label for="lastName">Last Name: </label>
