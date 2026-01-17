@@ -24,3 +24,8 @@ exports.addUser = async function(username, password, firstName, lastName) {
         VALUES ($1, $2, $3, $4);
         `, [username, password, firstName, lastName]);
 };
+
+exports.getMessages = async function() {
+    const { rows } = await pool.query("SELECT * FROM comments;");
+    return rows;
+};
