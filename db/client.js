@@ -1,4 +1,5 @@
 const { Client } = require("pg");
+const bcrypt = require("bcryptjs");
 
 const client = new Client({
     host:       'localhost',
@@ -7,6 +8,11 @@ const client = new Client({
     password:   '',
     port:       '5432'
 });
+
+async function createAdminPassword(password){
+    const cryptedPassword = await bcrypt.hash(password, 10);
+    return cryptedPassword;
+};
 
 const populateDb = `
     CREATE TABLE IF NOT EXISTS users (
@@ -25,20 +31,25 @@ const populateDb = `
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
         comment TEXT,
         time TIMESTAMPTZ NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'UTC')
-    );
-
-    INSERT INTO users (username ,first_name ,last_name ,status ,admin)
-    VALUES ('mgno1', 'Gordon', 'Ramsey', 'member', true)
-;`;
+    );`;
 
 async function main() {
     try {
         console.log('Creating connection...');
         await client.connect()
         console.log('Connection established');
+        console.log('Crypting admin password');
+        const password = await createAdminPassword('12345678');
+        console.log('Password crypted');
         console.log('Creating users table...');
         await client.query(populateDb);
         console.log('Users table created');
+        console.log('Adding admin');
+        await client.query(`
+            INSERT INTO users (username, password ,first_name ,last_name ,status ,admin)
+            VALUES ('mgno1',$1 ,'Gordon', 'Ramsey', 'member', true);`
+        ,[password]);
+        console.log('Admin added');
         console.log('Closing connection...');
         await client.end();
         console.log("Connection closed");
