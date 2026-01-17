@@ -6,7 +6,17 @@
     <title><%= title %></title>
 </head>
 <body>
-    <h2>Message Board</h2>
+    <header>
+        <h2>Message Board</h2>
+        <% if (isUserLogin) { %>
+            <p>Connected As <%= user.username %></p>
+        <% } else { %>
+        <ul>
+            <li>Sign Up</li>
+            <li>Log In</li>
+        </ul>
+        <% } %>
+    </header>
     <% if(locals.messages) { %>
         <div class="messages-container">
             <% messages.forEach(message => { %>
