@@ -72,7 +72,7 @@ passport.deserializeUser(async (id, done) => {
     };
 });
 
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/log-in', logInRouter);
 
