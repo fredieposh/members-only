@@ -27,5 +27,19 @@
         <% } else { %>
             <h3>No messages on board</h3>
         <% } %> 
+        <% if (locals.isUserLogin && isUserLogin) { %>
+            <%- include ("./partials/errors.ejs") %>
+            <div class="add-comment">
+                <form action="/add-comment/<%= user.id %>" method="post">
+                    <div>
+                        <lable for="comment"></lable>
+                        <textarea id="comment" name="comment" placeholder="What's on your mind?"></textarea>
+                    </div>
+                    <div class="button-div">
+                        <button type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+        <%} %>
     </body>
 </html>

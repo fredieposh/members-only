@@ -1,6 +1,6 @@
 const dbHandler = require("../db/queries.js")
 
-function convertMessagesTimeFormat(messagesArray) {
+function convertMessagesTimeFormat (messagesArray) {
     return messagesArray.map(row => {
         const rawDate = new Date(row.time);
         const formattedDate = new Intl.DateTimeFormat('en-GB', {
@@ -15,7 +15,7 @@ function convertMessagesTimeFormat(messagesArray) {
     })
 };
 
-exports.getIndexPage = async function(req, res, next ) {
+async function getIndexPage (req, res, next ) {
     const isUserLogin = req.isAuthenticated();
     const user = isUserLogin ? req.user : null;
     const rows = await dbHandler.getMessages();
@@ -28,5 +28,7 @@ exports.getIndexPage = async function(req, res, next ) {
         user,
         messages,
         isAdmin
-    })
+    });
 };
+
+module.exports = {convertMessagesTimeFormat, getIndexPage};

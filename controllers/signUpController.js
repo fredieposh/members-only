@@ -50,7 +50,7 @@ exports.postSignUpPage = [
             if (!errors.isEmpty()) {
                 res.render('signUpPage', {
                     title: "Sign Up Page",
-                    errors,
+                    errors: errors.array(),
                 });
                 return;
             };

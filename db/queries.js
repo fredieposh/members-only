@@ -26,6 +26,10 @@ exports.addUser = async function(username, password, firstName, lastName) {
 };
 
 exports.getMessages = async function() {
-    const { rows } = await pool.query("SELECT user_id,username, comment, comments.time FROM users JOIN comments ON users.id = comments.user_id;");
+    const { rows } = await pool.query("SELECT user_id,username, comment, comments.time FROM users JOIN comments ON users.id = comments.user_id ORDER BY comments.time DESC;");
     return rows;
+};
+
+exports.addMessage = async function(userId, comment) {
+    await pool.query(`INSERT INTO comments (user_id, comment) VALUES($1, $2);`, [userId, comment]);
 };

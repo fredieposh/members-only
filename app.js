@@ -11,6 +11,7 @@ const indexRouter = require('./routes/indexRouter.js');
 const signUpRouter = require('./routes/signUpRouter.js');
 const logInRouter = require('./routes/logInRouter.js');
 const logOutRouter = require('./routes/logOutRouter.js');
+const commentRouter = require('./routes/commentRouter.js');
 
 const app = express();
 const pool = new Pool ({
@@ -77,6 +78,7 @@ app.use('/', indexRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/log-in', logInRouter);
 app.use('/log-out', logOutRouter);
+app.use('/add-comment', commentRouter);
 
 
 app.use((err, req, res, next) => {
