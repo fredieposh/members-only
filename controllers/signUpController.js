@@ -1,5 +1,6 @@
 const { body, matchedData, validationResult} = require ('express-validator');
 const dbHandler = require("../db/queries.js");
+const bcrypt = require("bcryptjs");
 
 const emptyError = "should not be empty";
 const alphaError = "should contain only letters";
@@ -66,7 +67,9 @@ exports.postSignUpPage =  [
                 return;
             };
 
-            await dbHandler.addUser(username ,password ,firstName ,lastName);
+            const enctryptedPassword = await bcrypt.hash(password, 10);
+
+            await dbHandler.addUser(username ,enctryptedPassword ,firstName ,lastName);
             res.redirect('/sign-up')
 
         } catch (err) {
