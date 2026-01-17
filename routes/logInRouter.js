@@ -6,7 +6,7 @@ const logInRouter = Router();
 
 logInRouter.get('/', loginController.getLoginPage);
 logInRouter.post('/', passport.authenticate("local",{
-    successRedirect: '/log-in',
+    successRedirect: '/',
     failureRedirect: '/log-in',
     failureFlash: true,
 }));

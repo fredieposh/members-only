@@ -70,7 +70,7 @@ exports.postSignUpPage =  [
             const enctryptedPassword = await bcrypt.hash(password, 10);
 
             await dbHandler.addUser(username ,enctryptedPassword ,firstName ,lastName);
-            res.redirect('/sign-up')
+            res.redirect('/log-in');
 
         } catch (err) {
             next(err);
