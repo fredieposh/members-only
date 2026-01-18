@@ -26,8 +26,17 @@ exports.addUser = async function(username, password, firstName, lastName) {
 };
 
 exports.getMessages = async function() {
-    const { rows } = await pool.query("SELECT user_id,username, comment, comments.time FROM users JOIN comments ON users.id = comments.user_id ORDER BY comments.time DESC;");
+    const { rows } = await pool.query("SELECT user_id,username, comment, comments.time, comments.id FROM users JOIN comments ON users.id = comments.user_id ORDER BY comments.time DESC;");
     return rows;
+};
+
+exports.getMessageById = async function(id) {
+    const { rows } = await pool.query("SELECT id FROM comments WHERE id = $1", [id]);
+    return rows;
+};
+
+exports.deleteMessageById = async function(id) {
+    await pool.query("DELETE FROM comments WHERE id = $1", [id]);
 };
 
 exports.addMessage = async function(userId, comment) {

@@ -12,6 +12,7 @@ const signUpRouter = require('./routes/signUpRouter.js');
 const logInRouter = require('./routes/logInRouter.js');
 const logOutRouter = require('./routes/logOutRouter.js');
 const commentRouter = require('./routes/commentRouter.js');
+const deleteRouter = require('./routes/deleteRouter.js');
 
 const app = express();
 const assetPath = path.join(__dirname,'public');
@@ -81,6 +82,7 @@ app.use('/sign-up', signUpRouter);
 app.use('/log-in', logInRouter);
 app.use('/log-out', logOutRouter);
 app.use('/add-comment', commentRouter);
+app.use('/delete', deleteRouter);
 
 
 app.use((err, req, res, next) => {

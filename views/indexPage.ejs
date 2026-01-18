@@ -27,9 +27,14 @@
                                 <div class="sent-time">
                                     <span style="font-weight:600;">Sent At:</span> <%= message.time %>
                                 </div>
+                                <% if (locals.isUserLogin && isUserLogin && user.admin) { %>
+                                    <div class="delete-comment">
+                                        <a href="/delete/<%= message.id %>">Delete Message</a>
+                                    </div>
+                                <% } %>
                             </div>
                         <% }) %>
-                                    <% if (locals.isUserLogin && isUserLogin) { %>
+            <% if (locals.isUserLogin && isUserLogin) { %>
                 <%- include ("./partials/errors.ejs") %>
                 <div class="add-comment">
                     <form class="comment-form" action="/add-comment/<%= user.id %>" method="post">
