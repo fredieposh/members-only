@@ -1,12 +1,20 @@
     <header>
         <h2>Message Board</h2>
         <% if (locals.isUserLogin && isUserLogin) { %>
-            <p>Connected As <%= user.username %></p>
-            <li><a href="/log-out">Log out</a></li>
+            <div>
+                <ul>
+                    <li>Connected as <span style="font-weight: 600;" =><%= user.username %></span></li>
+                    <li><a href="/">Board</a></li>
+                    <li><a href="/log-out">Log out</a></li>
+                </ul>
+            </div>
         <% } else { %>
-        <ul>
-            <li><a href="/sign-up">Sign Up</a></li>
-            <li><a href="/log-in">Log In</a></li>
-        </ul>
+        <div>
+            <ul>
+                <li><a href="/">Board</a></li>
+                <li><a href="/sign-up">Sign Up</a></li>
+                <li><a href="/log-in">Log In</a></li>
+            </ul>
+        </div>
         <% } %>
     </header>

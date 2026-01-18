@@ -14,6 +14,7 @@ const logOutRouter = require('./routes/logOutRouter.js');
 const commentRouter = require('./routes/commentRouter.js');
 
 const app = express();
+const assetPath = path.join(__dirname,'public');
 const pool = new Pool ({
     host:       'localhost',
     user:       'maorgo92',
@@ -37,6 +38,7 @@ app.use(session({
 }));
 app.use(flash());
 app.use(passport.session());
+app.use(express.static(assetPath))
 app.use(express.urlencoded({ extended: false }));
 
 passport.use(new localStrategy(async (username, password, done) => {

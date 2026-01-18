@@ -3,36 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title><%= title %></title>
 </head>
 <body>
     <%- include ("./partials/header.ejs") %>
-    <h2>Sign Up!</h2>
-    <% if(locals.errors) { %>
-        <%- include ("./partials/errors.ejs") %>
-    <% } %>
     <div class="container">
-        <form class="add-user" action="/sign-up" method="POST">
-            <div>
-                <label for="username">User Name: </label>
-                <input type="text" id="username" name="username" minlength="2" required>
-            </div>
-            <div>
-                <label for="password">Password: </label>
-                    <input type="password" id="password" name="password" minlength="8" required>
-            </div>
-            <div>
-                <label for="firstName">First Name: </label>
-                    <input type="text" id="firstName" name="firstName" minlength="2" required>
-            </div>
-            <div>
-                <label for="lastName">Last Name: </label>
-                    <input type="text" id="lastName" name="lastName" minlength="2" required>
-            </div>
-            <div class="buttons-div">
-                <button type="submit">Sign Up</button>
-            </div>
-        </form>
+        <div class="header container">
+            <h2>Sign Up!</h2>
+        </div>
+        <% if(locals.errors) { %>
+            <%- include ("./partials/errors.ejs") %>
+        <% } %>
+        <div class="container form">
+            <form class="add-user" action="/sign-up" method="POST">
+                <div>
+                    <label for="username">User Name: </label>
+                    <input type="text" id="username" name="username" minlength="2" required>
+                </div>
+                <div>
+                    <label for="password">Password: </label>
+                        <input type="password" id="password" name="password" minlength="8" required>
+                </div>
+                <div>
+                    <label for="firstName">First Name: </label>
+                        <input type="text" id="firstName" name="firstName" minlength="2" required>
+                </div>
+                <div>
+                    <label for="lastName">Last Name: </label>
+                        <input type="text" id="lastName" name="lastName" minlength="2" required>
+                </div>
+                <div class="buttons-div">
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title><%= title %></title>
 </head>
 <body>
     <%- include ("./partials/header.ejs") %>
-    <h2>Login</h2>
-    <% if(locals.errors) { %>
-        <%- include ("./partials/errors.ejs") %>
-    <% } %>
     <div class="container">
-        <form class="login-user" action="/log-in" method="POST">
-            <div>
-                <label for="username">User Name: </label>
-                <input type="text" id="username" name="username" minlength="2" required>
-            </div>
-            <div>
-                <label for="password">Password: </label>
-                    <input type="password" id="password" name="password" minlength="8" required>
-            </div>
-            <div class="buttons-div">
-                <button type="submit">Log In</button>
-            </div>
-        </form>
+        <div class="header container">
+            <h2>Login</h2>
+        </div>
+        <% if(locals.errors) { %>
+            <%- include ("./partials/errors.ejs") %>
+        <% } %>
+        <div class="container form">
+            <form class="login-user" action="/log-in" method="POST">
+                <div>
+                    <label for="username">User Name: </label>
+                    <input type="text" id="username" name="username" minlength="2" required>
+                </div>
+                <div>
+                    <label for="password">Password: </label>
+                        <input type="password" id="password" name="password" minlength="8" required>
+                </div>
+                <div class="buttons-div">
+                    <button type="submit">Log In</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

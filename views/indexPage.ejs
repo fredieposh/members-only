@@ -3,43 +3,50 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles.css">
         <title><%= title %></title>
     </head>
     <body>
         <%- include ("./partials/header.ejs") %>
-        <% if(locals.messages) { %>
-            <div class="container">
-                <% messages.forEach(message => { %>
-                    <div class="message">
-                        <div class="username">
-                            Username: <%= message.username %>
+        <div class="container">
+            <% if(locals.messages) { %>
+                    <div class="messages container">
+                        <% messages.forEach(message => { %>
+                            <div class="message-card">
+                                <div class="message">
+                                    <p style="font-weight:600;">Message:</p>
+                                    <p><%= message.comment %></p>
+                                </div>                                
+                                <div class="username">
+                                    <% if (locals.isUserLogin && isUserLogin) { %>
+                                        <span style="font-weight:600;">Username:</span> <%= message.username %>
+                                    <% } else { %>
+                                        <span style="font-weight:600;">Username:</span> Anonymous
+                                    <% } %>
+                                </div>
+                                <div class="sent-time">
+                                    <span style="font-weight:600;">Sent At:</span> <%= message.time %>
+                                </div>
+                            </div>
+                        <% }) %>
+                                    <% if (locals.isUserLogin && isUserLogin) { %>
+                <%- include ("./partials/errors.ejs") %>
+                <div class="add-comment">
+                    <form class="comment-form" action="/add-comment/<%= user.id %>" method="post">
+                        <div>
+                            <lable for="comment">Add comment</lable>
+                            <textarea id="comment" name="comment" placeholder="What's on your mind?"></textarea>
                         </div>
-                        <div class="message">
-                            <p>Message:</p>
-                            <p><%= message.comment %></p>
+                        <div class="button-div">
+                            <button type="submit">Add</button>
                         </div>
-                        <div class="sent-time">
-                            Sent At: <%= message.time %>
-                        </div>
+                    </form>
+                </div>
+            <%} %>
                     </div>
-                <% }) %>
-            </div>
-        <% } else { %>
-            <h3>No messages on board</h3>
-        <% } %> 
-        <% if (locals.isUserLogin && isUserLogin) { %>
-            <%- include ("./partials/errors.ejs") %>
-            <div class="add-comment">
-                <form action="/add-comment/<%= user.id %>" method="post">
-                    <div>
-                        <lable for="comment"></lable>
-                        <textarea id="comment" name="comment" placeholder="What's on your mind?"></textarea>
-                    </div>
-                    <div class="button-div">
-                        <button type="submit">Add</button>
-                    </div>
-                </form>
-            </div>
-        <%} %>
+            <% } else { %>
+                <h3>No messages on board</h3>
+            <% } %>
+        </div>
     </body>
 </html>

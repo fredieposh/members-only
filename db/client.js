@@ -21,7 +21,7 @@ const populateDb = `
         password VARCHAR ( 255 ),
         first_name VARCHAR ( 255 ),
         last_name VARCHAR ( 255 ),
-        status VARCHAR ( 255 ) NOT NULL DEFAULT 'not_member',
+        status BOOLEAN NOT NULL DEFAULT true,
         admin BOOLEAN NOT NULL DEFAULT false,
         time TIMESTAMPTZ NOT NULL DEFAULT (CURRENT_TIMESTAMP AT  TIME ZONE 'UTC')
     );
@@ -47,7 +47,7 @@ async function main() {
         console.log('Adding admin');
         await client.query(`
             INSERT INTO users (username, password ,first_name ,last_name ,status ,admin)
-            VALUES ('mgno1',$1 ,'Gordon', 'Ramsey', 'member', true);`
+            VALUES ('mgno1',$1 ,'Gordon', 'Ramsey', true, true);`
         ,[password]);
         console.log('Admin added');
         console.log('Closing connection...');
