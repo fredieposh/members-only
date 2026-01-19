@@ -50,6 +50,11 @@ async function main() {
             VALUES ('mgno1',$1 ,'Gordon', 'Ramsey', true, true);`
         ,[password]);
         console.log('Admin added');
+        console.log('Adding first comment');
+        await client.query(`
+            INSERT INTO comments (user_id ,comment)
+            VALUES (1, 'Welcome to Message Board!');`);
+        console.log('First comment added');
         console.log('Closing connection...');
         await client.end();
         console.log("Connection closed");
