@@ -6,6 +6,7 @@ const { Pool } = require('pg');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const flash = require("connect-flash");
+const customErrors = require('./errors/customErrors.js');
 
 const indexRouter = require('./routes/indexRouter.js');
 const signUpRouter = require('./routes/signUpRouter.js');
@@ -83,10 +84,16 @@ app.use('/log-in', logInRouter);
 app.use('/log-out', logOutRouter);
 app.use('/add-comment', commentRouter);
 app.use('/delete', deleteRouter);
+app.use((req, res, next) => {
+    throw new customErrors.CustomNotFoundError();
+});
 
 
 app.use((err, req, res, next) => {
-    console.log(err);
+    res.status(err.statusCode || 500).render('errors', {
+        title: `Error - ${err.statusCode || 500}`,
+        errorMessage: err.message
+    });
 })
 
 app.listen(3000, (err) => {
