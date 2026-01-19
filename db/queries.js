@@ -8,7 +8,7 @@ const { Pool } = require("pg");
 //     database: 'members_only'
 // });
 
-const pool = new Pool("postgresql://postgres:YReBjGJxBkYFJATYNaLrnDQmcXggHdHj@crossover.proxy.rlwy.net:45061/railway");
+const pool = new Pool ({connectionString: "postgresql://postgres:YReBjGJxBkYFJATYNaLrnDQmcXggHdHj@crossover.proxy.rlwy.net:45061/railway"});
 
 exports.getUserNames = async function() {
     const { rows } = await pool.query(`SELECT * FROM users;`);
