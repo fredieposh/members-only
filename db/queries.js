@@ -1,12 +1,14 @@
 const { Pool } = require("pg");
 
-const pool = new Pool({
-    host: "localhost",
-    user: "maorgo92",
-    password: '',
-    port: '5432',
-    database: 'members_only'
-});
+// const pool = new Pool({
+//     host: "localhost",
+//     user: "maorgo92",
+//     password: '',
+//     port: '5432',
+//     database: 'members_only'
+// });
+
+const pool = new Pool("postgresql://postgres:YReBjGJxBkYFJATYNaLrnDQmcXggHdHj@crossover.proxy.rlwy.net:45061/railway");
 
 exports.getUserNames = async function() {
     const { rows } = await pool.query(`SELECT * FROM users;`);

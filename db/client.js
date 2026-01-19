@@ -1,13 +1,15 @@
 const { Client } = require("pg");
 const bcrypt = require("bcryptjs");
 
-const client = new Client({
-    host:       'localhost',
-    user:       'maorgo92',
-    database:   'members_only',
-    password:   '',
-    port:       '5432'
-});
+// const client = new Client({
+//     host:       'localhost',
+//     user:       'maorgo92',
+//     database:   'members_only',
+//     password:   '',
+//     port:       '5432'
+// });
+
+const client = new Client('postgresql://postgres:YReBjGJxBkYFJATYNaLrnDQmcXggHdHj@crossover.proxy.rlwy.net:45061/railway');
 
 async function createAdminPassword(password){
     const cryptedPassword = await bcrypt.hash(password, 10);

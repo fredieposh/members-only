@@ -17,13 +17,15 @@ const deleteRouter = require('./routes/deleteRouter.js');
 
 const app = express();
 const assetPath = path.join(__dirname,'public');
-const pool = new Pool ({
-    host:       'localhost',
-    user:       'maorgo92',
-    database:   'members_only',
-    password:   '',
-    port:       '5432'
-});
+// const pool = new Pool ({
+//     host:       'localhost',
+//     user:       'maorgo92',
+//     database:   'members_only',
+//     password:   '',
+//     port:       '5432'
+// });
+
+const pool = new Pool ("postgresql://postgres:YReBjGJxBkYFJATYNaLrnDQmcXggHdHj@crossover.proxy.rlwy.net:45061/railway");
 
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
