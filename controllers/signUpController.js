@@ -12,7 +12,7 @@ const structError = "should contain only letters, numbers and underscores";
 
 async function isUserExists(username) {
     const rows = await dbHandler.getUserByUsername(username);
-    return rows ? true : false;
+    return rows[0] ? true : false;
 };
 
 const validateUserDetails = [
